@@ -1,5 +1,5 @@
 // Bring in Shadow attacher to use global effects
-import './elements/shadowAttacher.jsx'
+import './components/shadowAttacher.jsx'
 
 // Build a CSS tag for font loading
 function makeFontCSSTag (href) {

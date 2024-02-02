@@ -638,7 +638,7 @@
             }
             return ReactElement(element.type, key, ref, self, source, owner, props);
           }
-          function isValidElement2(object) {
+          function isValidElement4(object) {
             return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
           }
           var SEPARATOR = ".";
@@ -703,7 +703,7 @@
                   return c;
                 });
               } else if (mappedChild != null) {
-                if (isValidElement2(mappedChild)) {
+                if (isValidElement4(mappedChild)) {
                   {
                     if (mappedChild.key && (!_child || _child.key !== mappedChild.key)) {
                       checkKeyStringCoercion(mappedChild.key);
@@ -791,7 +791,7 @@
             }) || [];
           }
           function onlyChild(children) {
-            if (!isValidElement2(children)) {
+            if (!isValidElement4(children)) {
               throw new Error("React.Children.only expected to receive a single React element child.");
             }
             return children;
@@ -983,7 +983,7 @@
             }
             return lazyType;
           }
-          function forwardRef6(render) {
+          function forwardRef10(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1044,7 +1044,7 @@
             }
             return false;
           }
-          function memo(type, compare) {
+          function memo2(type, compare) {
             {
               if (!isValidElementType(type)) {
                 error("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
@@ -1132,7 +1132,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useImperativeHandle(ref, create, deps);
           }
-          function useDebugValue2(value, formatterFn) {
+          function useDebugValue3(value, formatterFn) {
             {
               var dispatcher = resolveDispatcher();
               return dispatcher.useDebugValue(value, formatterFn);
@@ -1522,11 +1522,11 @@
             if (isArray(node2)) {
               for (var i = 0; i < node2.length; i++) {
                 var child = node2[i];
-                if (isValidElement2(child)) {
+                if (isValidElement4(child)) {
                   validateExplicitKey(child, parentType);
                 }
               }
-            } else if (isValidElement2(node2)) {
+            } else if (isValidElement4(node2)) {
               if (node2._store) {
                 node2._store.validated = true;
               }
@@ -1537,7 +1537,7 @@
                   var iterator = iteratorFn.call(node2);
                   var step;
                   while (!(step = iterator.next()).done) {
-                    if (isValidElement2(step.value)) {
+                    if (isValidElement4(step.value)) {
                       validateExplicitKey(step.value, parentType);
                     }
                   }
@@ -1860,14 +1860,14 @@
           var createElement$1 = createElementWithValidation;
           var cloneElement$1 = cloneElementWithValidation;
           var createFactory = createFactoryWithValidation;
-          var Children2 = {
+          var Children3 = {
             map: mapChildren,
             forEach: forEachChildren,
             count: countChildren,
             toArray,
             only: onlyChild
           };
-          exports.Children = Children2;
+          exports.Children = Children3;
           exports.Component = Component;
           exports.Fragment = REACT_FRAGMENT_TYPE;
           exports.Profiler = REACT_PROFILER_TYPE;
@@ -1880,15 +1880,15 @@
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
-          exports.forwardRef = forwardRef6;
-          exports.isValidElement = isValidElement2;
+          exports.forwardRef = forwardRef10;
+          exports.isValidElement = isValidElement4;
           exports.lazy = lazy;
-          exports.memo = memo;
+          exports.memo = memo2;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
           exports.useCallback = useCallback3;
           exports.useContext = useContext8;
-          exports.useDebugValue = useDebugValue2;
+          exports.useDebugValue = useDebugValue3;
           exports.useDeferredValue = useDeferredValue;
           exports.useEffect = useEffect6;
           exports.useId = useId;
@@ -2394,9 +2394,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React31 = require_react();
+          var React37 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React31.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React37.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4001,7 +4001,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React31.Children.forEach(props.children, function(child) {
+                  React37.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12448,7 +12448,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React31.Component().refs;
+          var emptyRefsObject = new React37.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -24119,7 +24119,7 @@
       function emptyFunctionThatReturnsNull() {
         return null;
       }
-      module.exports = function(isValidElement2, throwOnDirectAccess) {
+      module.exports = function(isValidElement4, throwOnDirectAccess) {
         var ITERATOR_SYMBOL = typeof Symbol === "function" && Symbol.iterator;
         var FAUX_ITERATOR_SYMBOL = "@@iterator";
         function getIteratorFn(maybeIterable) {
@@ -24247,7 +24247,7 @@
         function createElementTypeChecker() {
           function validate(props, propName, componentName, location, propFullName) {
             var propValue = props[propName];
-            if (!isValidElement2(propValue)) {
+            if (!isValidElement4(propValue)) {
               var propType = getPropType(propValue);
               return new PropTypeError("Invalid " + location + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement."));
             }
@@ -24435,7 +24435,7 @@
               if (Array.isArray(propValue)) {
                 return propValue.every(isNode);
               }
-              if (propValue === null || isValidElement2(propValue)) {
+              if (propValue === null || isValidElement4(propValue)) {
                 return true;
               }
               var iteratorFn = getIteratorFn(propValue);
@@ -24558,7 +24558,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React31 = require_react();
+          var React37 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -24584,7 +24584,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React31.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React37.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -25212,7 +25212,7 @@
           {
             propTypesMisspellWarningShown = false;
           }
-          function isValidElement2(object) {
+          function isValidElement4(object) {
             {
               return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
             }
@@ -25279,11 +25279,11 @@
               if (isArray(node2)) {
                 for (var i = 0; i < node2.length; i++) {
                   var child = node2[i];
-                  if (isValidElement2(child)) {
+                  if (isValidElement4(child)) {
                     validateExplicitKey(child, parentType);
                   }
                 }
-              } else if (isValidElement2(node2)) {
+              } else if (isValidElement4(node2)) {
                 if (node2._store) {
                   node2._store.validated = true;
                 }
@@ -25294,7 +25294,7 @@
                     var iterator = iteratorFn.call(node2);
                     var step;
                     while (!(step = iterator.next()).done) {
-                      if (isValidElement2(step.value)) {
+                      if (isValidElement4(step.value)) {
                         validateExplicitKey(step.value, parentType);
                       }
                     }
@@ -25635,8 +25635,8 @@
     }
   });
 
-  // src/elements/shadowAttacher.jsx
-  var import_react11 = __toESM(require_react(), 1);
+  // src/components/shadowAttacher.jsx
+  var import_react12 = __toESM(require_react(), 1);
   var import_client = __toESM(require_client(), 1);
 
   // node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
@@ -28035,6 +28035,56 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       ref
     };
   }
+
+  // node_modules/@mui/utils/esm/integerPropType/integerPropType.js
+  function getTypeByValue(value) {
+    const valueType = typeof value;
+    switch (valueType) {
+      case "number":
+        if (Number.isNaN(value)) {
+          return "NaN";
+        }
+        if (!Number.isFinite(value)) {
+          return "Infinity";
+        }
+        if (value !== Math.floor(value)) {
+          return "float";
+        }
+        return "number";
+      case "object":
+        if (value === null) {
+          return "null";
+        }
+        return value.constructor.name;
+      default:
+        return valueType;
+    }
+  }
+  function ponyfillIsInteger(x) {
+    return typeof x === "number" && isFinite(x) && Math.floor(x) === x;
+  }
+  var isInteger = Number.isInteger || ponyfillIsInteger;
+  function requiredInteger(props, propName, componentName, location) {
+    const propValue = props[propName];
+    if (propValue == null || !isInteger(propValue)) {
+      const propType = getTypeByValue(propValue);
+      return new RangeError(`Invalid ${location} \`${propName}\` of type \`${propType}\` supplied to \`${componentName}\`, expected \`integer\`.`);
+    }
+    return null;
+  }
+  function validator(props, propName, ...other) {
+    const propValue = props[propName];
+    if (propValue === void 0) {
+      return null;
+    }
+    return requiredInteger(props, propName, ...other);
+  }
+  function validatorNoop() {
+    return null;
+  }
+  validator.isRequired = requiredInteger;
+  validatorNoop.isRequired = validatorNoop;
+  var integerPropType_default = false ? validatorNoop : validator;
 
   // node_modules/@mui/utils/esm/resolveProps/resolveProps.js
   function resolveProps(defaultProps2, props) {
@@ -30631,9 +30681,21 @@ Please use another name.` : formatMuiErrorMessage(18));
   }
   var createTheme_default2 = createTheme2;
 
+  // node_modules/@mui/material/styles/useTheme.js
+  var React18 = __toESM(require_react());
+
   // node_modules/@mui/material/styles/defaultTheme.js
   var defaultTheme = createTheme_default2();
   var defaultTheme_default = defaultTheme;
+
+  // node_modules/@mui/material/styles/useTheme.js
+  function useTheme5() {
+    const theme = useTheme_default(defaultTheme_default);
+    if (true) {
+      React18.useDebugValue(theme);
+    }
+    return theme[identifier_default] || theme;
+  }
 
   // node_modules/@mui/material/styles/useThemeProps.js
   function useThemeProps2({
@@ -30657,14 +30719,233 @@ Please use another name.` : formatMuiErrorMessage(18));
   });
   var styled_default = styled2;
 
-  // src/elements/customCSS.txt
+  // node_modules/@mui/material/styles/getOverlayAlpha.js
+  var getOverlayAlpha = (elevation) => {
+    let alphaValue;
+    if (elevation < 1) {
+      alphaValue = 5.11916 * elevation ** 2;
+    } else {
+      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
+    }
+    return (alphaValue / 100).toFixed(2);
+  };
+  var getOverlayAlpha_default = getOverlayAlpha;
+
+  // src/components/customCSS.txt
   var customCSS_default = "";
 
-  // src/elements/AppRoot.jsx
-  var import_react10 = __toESM(require_react(), 1);
+  // src/components/AppRoot.jsx
+  var import_react11 = __toESM(require_react(), 1);
 
   // node_modules/@mui/material/utils/capitalize.js
   var capitalize_default = capitalize;
+
+  // node_modules/@mui/material/utils/createSvgIcon.js
+  var React20 = __toESM(require_react());
+
+  // node_modules/@mui/material/SvgIcon/SvgIcon.js
+  var React19 = __toESM(require_react());
+  var import_prop_types8 = __toESM(require_prop_types());
+
+  // node_modules/@mui/material/SvgIcon/svgIconClasses.js
+  function getSvgIconUtilityClass(slot) {
+    return generateUtilityClass("MuiSvgIcon", slot);
+  }
+  var svgIconClasses = generateUtilityClasses("MuiSvgIcon", ["root", "colorPrimary", "colorSecondary", "colorAction", "colorError", "colorDisabled", "fontSizeInherit", "fontSizeSmall", "fontSizeMedium", "fontSizeLarge"]);
+
+  // node_modules/@mui/material/SvgIcon/SvgIcon.js
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
+  var _excluded9 = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
+  var useUtilityClasses = (ownerState) => {
+    const {
+      color: color2,
+      fontSize,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", color2 !== "inherit" && `color${capitalize_default(color2)}`, `fontSize${capitalize_default(fontSize)}`]
+    };
+    return composeClasses(slots, getSvgIconUtilityClass, classes);
+  };
+  var SvgIconRoot = styled_default("svg", {
+    name: "MuiSvgIcon",
+    slot: "Root",
+    overridesResolver: (props, styles2) => {
+      const {
+        ownerState
+      } = props;
+      return [styles2.root, ownerState.color !== "inherit" && styles2[`color${capitalize_default(ownerState.color)}`], styles2[`fontSize${capitalize_default(ownerState.fontSize)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => {
+    var _theme$transitions, _theme$transitions$cr, _theme$transitions2, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _palette$ownerState$c, _palette, _palette2, _palette3;
+    return {
+      userSelect: "none",
+      width: "1em",
+      height: "1em",
+      display: "inline-block",
+      // the <svg> will define the property that has `currentColor`
+      // e.g. heroicons uses fill="none" and stroke="currentColor"
+      fill: ownerState.hasSvgAsChild ? void 0 : "currentColor",
+      flexShrink: 0,
+      transition: (_theme$transitions = theme.transitions) == null || (_theme$transitions$cr = _theme$transitions.create) == null ? void 0 : _theme$transitions$cr.call(_theme$transitions, "fill", {
+        duration: (_theme$transitions2 = theme.transitions) == null || (_theme$transitions2 = _theme$transitions2.duration) == null ? void 0 : _theme$transitions2.shorter
+      }),
+      fontSize: {
+        inherit: "inherit",
+        small: ((_theme$typography = theme.typography) == null || (_theme$typography$pxT = _theme$typography.pxToRem) == null ? void 0 : _theme$typography$pxT.call(_theme$typography, 20)) || "1.25rem",
+        medium: ((_theme$typography2 = theme.typography) == null || (_theme$typography2$px = _theme$typography2.pxToRem) == null ? void 0 : _theme$typography2$px.call(_theme$typography2, 24)) || "1.5rem",
+        large: ((_theme$typography3 = theme.typography) == null || (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || "2.1875rem"
+      }[ownerState.fontSize],
+      // TODO v5 deprecate, v6 remove for sx
+      color: (_palette$ownerState$c = (_palette = (theme.vars || theme).palette) == null || (_palette = _palette[ownerState.color]) == null ? void 0 : _palette.main) != null ? _palette$ownerState$c : {
+        action: (_palette2 = (theme.vars || theme).palette) == null || (_palette2 = _palette2.action) == null ? void 0 : _palette2.active,
+        disabled: (_palette3 = (theme.vars || theme).palette) == null || (_palette3 = _palette3.action) == null ? void 0 : _palette3.disabled,
+        inherit: void 0
+      }[ownerState.color]
+    };
+  });
+  var SvgIcon = /* @__PURE__ */ React19.forwardRef(function SvgIcon2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiSvgIcon"
+    });
+    const {
+      children,
+      className,
+      color: color2 = "inherit",
+      component = "svg",
+      fontSize = "medium",
+      htmlColor,
+      inheritViewBox = false,
+      titleAccess,
+      viewBox = "0 0 24 24"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded9);
+    const hasSvgAsChild = /* @__PURE__ */ React19.isValidElement(children) && children.type === "svg";
+    const ownerState = _extends({}, props, {
+      color: color2,
+      component,
+      fontSize,
+      instanceFontSize: inProps.fontSize,
+      inheritViewBox,
+      viewBox,
+      hasSvgAsChild
+    });
+    const more = {};
+    if (!inheritViewBox) {
+      more.viewBox = viewBox;
+    }
+    const classes = useUtilityClasses(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(SvgIconRoot, _extends({
+      as: component,
+      className: clsx_default(classes.root, className),
+      focusable: "false",
+      color: htmlColor,
+      "aria-hidden": titleAccess ? void 0 : true,
+      role: titleAccess ? "img" : void 0,
+      ref
+    }, more, other, hasSvgAsChild && children.props, {
+      ownerState,
+      children: [hasSvgAsChild ? children.props.children : children, titleAccess ? /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("title", {
+        children: titleAccess
+      }) : null]
+    }));
+  });
+  true ? SvgIcon.propTypes = {
+    // ┌────────────────────────────── Warning ──────────────────────────────┐
+    // │ These PropTypes are generated from the TypeScript type definitions. │
+    // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+    // └─────────────────────────────────────────────────────────────────────┘
+    /**
+     * Node passed into the SVG element.
+     */
+    children: import_prop_types8.default.node,
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: import_prop_types8.default.object,
+    /**
+     * @ignore
+     */
+    className: import_prop_types8.default.string,
+    /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+     * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+     * @default 'inherit'
+     */
+    color: import_prop_types8.default.oneOfType([import_prop_types8.default.oneOf(["inherit", "action", "disabled", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types8.default.string]),
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: import_prop_types8.default.elementType,
+    /**
+     * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+     * @default 'medium'
+     */
+    fontSize: import_prop_types8.default.oneOfType([import_prop_types8.default.oneOf(["inherit", "large", "medium", "small"]), import_prop_types8.default.string]),
+    /**
+     * Applies a color attribute to the SVG element.
+     */
+    htmlColor: import_prop_types8.default.string,
+    /**
+     * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+     * prop will be ignored.
+     * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+     * `component`'s viewBox to the root node.
+     * @default false
+     */
+    inheritViewBox: import_prop_types8.default.bool,
+    /**
+     * The shape-rendering attribute. The behavior of the different options is described on the
+     * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+     * If you are having issues with blurry icons you should investigate this prop.
+     */
+    shapeRendering: import_prop_types8.default.string,
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: import_prop_types8.default.oneOfType([import_prop_types8.default.arrayOf(import_prop_types8.default.oneOfType([import_prop_types8.default.func, import_prop_types8.default.object, import_prop_types8.default.bool])), import_prop_types8.default.func, import_prop_types8.default.object]),
+    /**
+     * Provides a human-readable title for the element that contains it.
+     * https://www.w3.org/TR/SVG-access/#Equivalent
+     */
+    titleAccess: import_prop_types8.default.string,
+    /**
+     * Allows you to redefine what the coordinates without units mean inside an SVG element.
+     * For example, if the SVG element is 500 (width) by 200 (height),
+     * and you pass viewBox="0 0 50 20",
+     * this means that the coordinates inside the SVG will go from the top left corner (0,0)
+     * to bottom right (50,20) and each unit will be worth 10px.
+     * @default '0 0 24 24'
+     */
+    viewBox: import_prop_types8.default.string
+  } : void 0;
+  SvgIcon.muiName = "SvgIcon";
+  var SvgIcon_default = SvgIcon;
+
+  // node_modules/@mui/material/utils/createSvgIcon.js
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
+  function createSvgIcon(path, displayName) {
+    function Component(props, ref) {
+      return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(SvgIcon_default, _extends({
+        "data-testid": `${displayName}Icon`,
+        ref
+      }, props, {
+        children: path
+      }));
+    }
+    if (true) {
+      Component.displayName = `${displayName}Icon`;
+    }
+    Component.muiName = SvgIcon_default.muiName;
+    return /* @__PURE__ */ React20.memo(/* @__PURE__ */ React20.forwardRef(Component));
+  }
 
   // node_modules/@mui/material/utils/useEventCallback.js
   var useEventCallback_default2 = useEventCallback_default;
@@ -30704,7 +30985,7 @@ Please use another name.` : formatMuiErrorMessage(18));
   }
 
   // node_modules/react-transition-group/esm/TransitionGroup.js
-  var import_prop_types8 = __toESM(require_prop_types());
+  var import_prop_types9 = __toESM(require_prop_types());
   var import_react8 = __toESM(require_react());
 
   // node_modules/react-transition-group/esm/utils/ChildMapping.js
@@ -30893,7 +31174,7 @@ Please use another name.` : formatMuiErrorMessage(18));
      * you can pass in `component={null}`. This is useful if the wrapping div
      * borks your css styles.
      */
-    component: import_prop_types8.default.any,
+    component: import_prop_types9.default.any,
     /**
      * A set of `<Transition>` components, that are toggled `in` and out as they
      * leave. the `<TransitionGroup>` will inject specific transition props, so
@@ -30907,25 +31188,25 @@ Please use another name.` : formatMuiErrorMessage(18));
      * the transition child as you change its content, this will cause
      * `TransitionGroup` to transition the child out and back in.
      */
-    children: import_prop_types8.default.node,
+    children: import_prop_types9.default.node,
     /**
      * A convenience prop that enables or disables appear animations
      * for all children. Note that specifying this will override any defaults set
      * on individual children Transitions.
      */
-    appear: import_prop_types8.default.bool,
+    appear: import_prop_types9.default.bool,
     /**
      * A convenience prop that enables or disables enter animations
      * for all children. Note that specifying this will override any defaults set
      * on individual children Transitions.
      */
-    enter: import_prop_types8.default.bool,
+    enter: import_prop_types9.default.bool,
     /**
      * A convenience prop that enables or disables exit animations
      * for all children. Note that specifying this will override any defaults set
      * on individual children Transitions.
      */
-    exit: import_prop_types8.default.bool,
+    exit: import_prop_types9.default.bool,
     /**
      * You may need to apply reactive updates to a child as it is exiting.
      * This is generally done by using `cloneElement` however in the case of an exiting
@@ -30936,23 +31217,164 @@ Please use another name.` : formatMuiErrorMessage(18));
      *
      * @type Function(child: ReactElement) -> ReactElement
      */
-    childFactory: import_prop_types8.default.func
+    childFactory: import_prop_types9.default.func
   } : {};
   TransitionGroup.defaultProps = defaultProps;
   var TransitionGroup_default = TransitionGroup;
 
-  // node_modules/@mui/material/ButtonBase/ButtonBase.js
-  var React22 = __toESM(require_react());
-  var import_prop_types11 = __toESM(require_prop_types());
-
-  // node_modules/@mui/material/ButtonBase/TouchRipple.js
-  var React21 = __toESM(require_react());
+  // node_modules/@mui/material/Paper/Paper.js
+  var React23 = __toESM(require_react());
   var import_prop_types10 = __toESM(require_prop_types());
 
+  // node_modules/@mui/material/Paper/paperClasses.js
+  function getPaperUtilityClass(slot) {
+    return generateUtilityClass("MuiPaper", slot);
+  }
+  var paperClasses = generateUtilityClasses("MuiPaper", ["root", "rounded", "outlined", "elevation", "elevation0", "elevation1", "elevation2", "elevation3", "elevation4", "elevation5", "elevation6", "elevation7", "elevation8", "elevation9", "elevation10", "elevation11", "elevation12", "elevation13", "elevation14", "elevation15", "elevation16", "elevation17", "elevation18", "elevation19", "elevation20", "elevation21", "elevation22", "elevation23", "elevation24"]);
+
+  // node_modules/@mui/material/Paper/Paper.js
+  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
+  var _excluded10 = ["className", "component", "elevation", "square", "variant"];
+  var useUtilityClasses2 = (ownerState) => {
+    const {
+      square,
+      elevation,
+      variant,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", variant, !square && "rounded", variant === "elevation" && `elevation${elevation}`]
+    };
+    return composeClasses(slots, getPaperUtilityClass, classes);
+  };
+  var PaperRoot = styled_default("div", {
+    name: "MuiPaper",
+    slot: "Root",
+    overridesResolver: (props, styles2) => {
+      const {
+        ownerState
+      } = props;
+      return [styles2.root, styles2[ownerState.variant], !ownerState.square && styles2.rounded, ownerState.variant === "elevation" && styles2[`elevation${ownerState.elevation}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => {
+    var _theme$vars$overlays;
+    return _extends({
+      backgroundColor: (theme.vars || theme).palette.background.paper,
+      color: (theme.vars || theme).palette.text.primary,
+      transition: theme.transitions.create("box-shadow")
+    }, !ownerState.square && {
+      borderRadius: theme.shape.borderRadius
+    }, ownerState.variant === "outlined" && {
+      border: `1px solid ${(theme.vars || theme).palette.divider}`
+    }, ownerState.variant === "elevation" && _extends({
+      boxShadow: (theme.vars || theme).shadows[ownerState.elevation]
+    }, !theme.vars && theme.palette.mode === "dark" && {
+      backgroundImage: `linear-gradient(${alpha("#fff", getOverlayAlpha_default(ownerState.elevation))}, ${alpha("#fff", getOverlayAlpha_default(ownerState.elevation))})`
+    }, theme.vars && {
+      backgroundImage: (_theme$vars$overlays = theme.vars.overlays) == null ? void 0 : _theme$vars$overlays[ownerState.elevation]
+    }));
+  });
+  var Paper = /* @__PURE__ */ React23.forwardRef(function Paper2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiPaper"
+    });
+    const {
+      className,
+      component = "div",
+      elevation = 1,
+      square = false,
+      variant = "elevation"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded10);
+    const ownerState = _extends({}, props, {
+      component,
+      elevation,
+      square,
+      variant
+    });
+    const classes = useUtilityClasses2(ownerState);
+    if (true) {
+      const theme = useTheme5();
+      if (theme.shadows[elevation] === void 0) {
+        console.error([`MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`, `Please make sure that \`theme.shadows[${elevation}]\` is defined.`].join("\n"));
+      }
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(PaperRoot, _extends({
+      as: component,
+      ownerState,
+      className: clsx_default(classes.root, className),
+      ref
+    }, other));
+  });
+  true ? Paper.propTypes = {
+    // ┌────────────────────────────── Warning ──────────────────────────────┐
+    // │ These PropTypes are generated from the TypeScript type definitions. │
+    // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+    // └─────────────────────────────────────────────────────────────────────┘
+    /**
+     * The content of the component.
+     */
+    children: import_prop_types10.default.node,
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: import_prop_types10.default.object,
+    /**
+     * @ignore
+     */
+    className: import_prop_types10.default.string,
+    /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component: import_prop_types10.default.elementType,
+    /**
+     * Shadow depth, corresponds to `dp` in the spec.
+     * It accepts values between 0 and 24 inclusive.
+     * @default 1
+     */
+    elevation: chainPropTypes(integerPropType_default, (props) => {
+      const {
+        elevation,
+        variant
+      } = props;
+      if (elevation > 0 && variant === "outlined") {
+        return new Error(`MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`);
+      }
+      return null;
+    }),
+    /**
+     * If `true`, rounded corners are disabled.
+     * @default false
+     */
+    square: import_prop_types10.default.bool,
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: import_prop_types10.default.oneOfType([import_prop_types10.default.arrayOf(import_prop_types10.default.oneOfType([import_prop_types10.default.func, import_prop_types10.default.object, import_prop_types10.default.bool])), import_prop_types10.default.func, import_prop_types10.default.object]),
+    /**
+     * The variant to use.
+     * @default 'elevation'
+     */
+    variant: import_prop_types10.default.oneOfType([import_prop_types10.default.oneOf(["elevation", "outlined"]), import_prop_types10.default.string])
+  } : void 0;
+  var Paper_default = Paper;
+
+  // node_modules/@mui/material/ButtonBase/ButtonBase.js
+  var React26 = __toESM(require_react());
+  var import_prop_types13 = __toESM(require_prop_types());
+
+  // node_modules/@mui/material/ButtonBase/TouchRipple.js
+  var React25 = __toESM(require_react());
+  var import_prop_types12 = __toESM(require_prop_types());
+
   // node_modules/@mui/material/ButtonBase/Ripple.js
-  var React20 = __toESM(require_react());
-  var import_prop_types9 = __toESM(require_prop_types());
-  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+  var React24 = __toESM(require_react());
+  var import_prop_types11 = __toESM(require_prop_types());
+  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
   function Ripple(props) {
     const {
       className,
@@ -30965,7 +31387,7 @@ Please use another name.` : formatMuiErrorMessage(18));
       onExited,
       timeout
     } = props;
-    const [leaving, setLeaving] = React20.useState(false);
+    const [leaving, setLeaving] = React24.useState(false);
     const rippleClassName = clsx_default(className, classes.ripple, classes.rippleVisible, pulsate && classes.ripplePulsate);
     const rippleStyles = {
       width: rippleSize,
@@ -30977,7 +31399,7 @@ Please use another name.` : formatMuiErrorMessage(18));
     if (!inProp && !leaving) {
       setLeaving(true);
     }
-    React20.useEffect(() => {
+    React24.useEffect(() => {
       if (!inProp && onExited != null) {
         const timeoutId = setTimeout(onExited, timeout);
         return () => {
@@ -30986,10 +31408,10 @@ Please use another name.` : formatMuiErrorMessage(18));
       }
       return void 0;
     }, [onExited, inProp, timeout]);
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", {
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", {
       className: rippleClassName,
       style: rippleStyles,
-      children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", {
+      children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", {
         className: childClassName
       })
     });
@@ -30999,36 +31421,36 @@ Please use another name.` : formatMuiErrorMessage(18));
      * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
-    classes: import_prop_types9.default.object.isRequired,
-    className: import_prop_types9.default.string,
+    classes: import_prop_types11.default.object.isRequired,
+    className: import_prop_types11.default.string,
     /**
      * @ignore - injected from TransitionGroup
      */
-    in: import_prop_types9.default.bool,
+    in: import_prop_types11.default.bool,
     /**
      * @ignore - injected from TransitionGroup
      */
-    onExited: import_prop_types9.default.func,
+    onExited: import_prop_types11.default.func,
     /**
      * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
      */
-    pulsate: import_prop_types9.default.bool,
+    pulsate: import_prop_types11.default.bool,
     /**
      * Diameter of the ripple.
      */
-    rippleSize: import_prop_types9.default.number,
+    rippleSize: import_prop_types11.default.number,
     /**
      * Horizontal position of the ripple center.
      */
-    rippleX: import_prop_types9.default.number,
+    rippleX: import_prop_types11.default.number,
     /**
      * Vertical position of the ripple center.
      */
-    rippleY: import_prop_types9.default.number,
+    rippleY: import_prop_types11.default.number,
     /**
      * exit delay
      */
-    timeout: import_prop_types9.default.number.isRequired
+    timeout: import_prop_types11.default.number.isRequired
   } : void 0;
   var Ripple_default = Ripple;
 
@@ -31037,8 +31459,8 @@ Please use another name.` : formatMuiErrorMessage(18));
   var touchRippleClasses_default = touchRippleClasses;
 
   // node_modules/@mui/material/ButtonBase/TouchRipple.js
-  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
-  var _excluded9 = ["center", "classes", "className"];
+  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
+  var _excluded11 = ["center", "classes", "className"];
   var _ = (t) => t;
   var _t;
   var _t2;
@@ -31148,7 +31570,7 @@ Please use another name.` : formatMuiErrorMessage(18));
   }) => theme.transitions.easing.easeInOut, touchRippleClasses_default.childPulsate, pulsateKeyframe, ({
     theme
   }) => theme.transitions.easing.easeInOut);
-  var TouchRipple = /* @__PURE__ */ React21.forwardRef(function TouchRipple2(inProps, ref) {
+  var TouchRipple = /* @__PURE__ */ React25.forwardRef(function TouchRipple2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiTouchRipple"
@@ -31157,21 +31579,21 @@ Please use another name.` : formatMuiErrorMessage(18));
       center: centerProp = false,
       classes = {},
       className
-    } = props, other = _objectWithoutPropertiesLoose(props, _excluded9);
-    const [ripples, setRipples] = React21.useState([]);
-    const nextKey = React21.useRef(0);
-    const rippleCallback = React21.useRef(null);
-    React21.useEffect(() => {
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded11);
+    const [ripples, setRipples] = React25.useState([]);
+    const nextKey = React25.useRef(0);
+    const rippleCallback = React25.useRef(null);
+    React25.useEffect(() => {
       if (rippleCallback.current) {
         rippleCallback.current();
         rippleCallback.current = null;
       }
     }, [ripples]);
-    const ignoringMouseDown = React21.useRef(false);
+    const ignoringMouseDown = React25.useRef(false);
     const startTimer = useTimeout();
-    const startTimerCommit = React21.useRef(null);
-    const container = React21.useRef(null);
-    const startCommit = React21.useCallback((params) => {
+    const startTimerCommit = React25.useRef(null);
+    const container = React25.useRef(null);
+    const startCommit = React25.useCallback((params) => {
       const {
         pulsate: pulsate2,
         rippleX,
@@ -31179,7 +31601,7 @@ Please use another name.` : formatMuiErrorMessage(18));
         rippleSize,
         cb
       } = params;
-      setRipples((oldRipples) => [...oldRipples, /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TouchRippleRipple, {
+      setRipples((oldRipples) => [...oldRipples, /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(TouchRippleRipple, {
         classes: {
           ripple: clsx_default(classes.ripple, touchRippleClasses_default.ripple),
           rippleVisible: clsx_default(classes.rippleVisible, touchRippleClasses_default.rippleVisible),
@@ -31197,7 +31619,7 @@ Please use another name.` : formatMuiErrorMessage(18));
       nextKey.current += 1;
       rippleCallback.current = cb;
     }, [classes]);
-    const start = React21.useCallback((event = {}, options = {}, cb = () => {
+    const start = React25.useCallback((event = {}, options = {}, cb = () => {
     }) => {
       const {
         pulsate: pulsate2 = false,
@@ -31271,12 +31693,12 @@ Please use another name.` : formatMuiErrorMessage(18));
         });
       }
     }, [centerProp, startCommit, startTimer]);
-    const pulsate = React21.useCallback(() => {
+    const pulsate = React25.useCallback(() => {
       start({}, {
         pulsate: true
       });
     }, [start]);
-    const stop = React21.useCallback((event, cb) => {
+    const stop = React25.useCallback((event, cb) => {
       startTimer.clear();
       if ((event == null ? void 0 : event.type) === "touchend" && startTimerCommit.current) {
         startTimerCommit.current();
@@ -31295,16 +31717,16 @@ Please use another name.` : formatMuiErrorMessage(18));
       });
       rippleCallback.current = cb;
     }, [startTimer]);
-    React21.useImperativeHandle(ref, () => ({
+    React25.useImperativeHandle(ref, () => ({
       pulsate,
       start,
       stop
     }), [pulsate, start, stop]);
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TouchRippleRoot, _extends({
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(TouchRippleRoot, _extends({
       className: clsx_default(touchRippleClasses_default.root, classes.root, className),
       ref: container
     }, other, {
-      children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(TransitionGroup_default, {
+      children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(TransitionGroup_default, {
         component: null,
         exit: true,
         children: ripples
@@ -31316,16 +31738,16 @@ Please use another name.` : formatMuiErrorMessage(18));
      * If `true`, the ripple starts at the center of the component
      * rather than at the point of interaction.
      */
-    center: import_prop_types10.default.bool,
+    center: import_prop_types12.default.bool,
     /**
      * Override or extend the styles applied to the component.
      * See [CSS API](#css) below for more details.
      */
-    classes: import_prop_types10.default.object,
+    classes: import_prop_types12.default.object,
     /**
      * @ignore
      */
-    className: import_prop_types10.default.string
+    className: import_prop_types12.default.string
   } : void 0;
   var TouchRipple_default = TouchRipple;
 
@@ -31337,10 +31759,10 @@ Please use another name.` : formatMuiErrorMessage(18));
   var buttonBaseClasses_default = buttonBaseClasses;
 
   // node_modules/@mui/material/ButtonBase/ButtonBase.js
-  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
-  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
-  var _excluded10 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
-  var useUtilityClasses = (ownerState) => {
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
+  var _excluded12 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
+  var useUtilityClasses3 = (ownerState) => {
     const {
       disabled,
       focusVisible,
@@ -31400,7 +31822,7 @@ Please use another name.` : formatMuiErrorMessage(18));
       colorAdjust: "exact"
     }
   });
-  var ButtonBase = /* @__PURE__ */ React22.forwardRef(function ButtonBase2(inProps, ref) {
+  var ButtonBase = /* @__PURE__ */ React26.forwardRef(function ButtonBase2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiButtonBase"
@@ -31434,9 +31856,9 @@ Please use another name.` : formatMuiErrorMessage(18));
       TouchRippleProps,
       touchRippleRef,
       type
-    } = props, other = _objectWithoutPropertiesLoose(props, _excluded10);
-    const buttonRef = React22.useRef(null);
-    const rippleRef = React22.useRef(null);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded12);
+    const buttonRef = React26.useRef(null);
+    const rippleRef = React26.useRef(null);
     const handleRippleRef = useForkRef_default(rippleRef, touchRippleRef);
     const {
       isFocusVisibleRef,
@@ -31444,22 +31866,22 @@ Please use another name.` : formatMuiErrorMessage(18));
       onBlur: handleBlurVisible,
       ref: focusVisibleRef
     } = useIsFocusVisible_default();
-    const [focusVisible, setFocusVisible] = React22.useState(false);
+    const [focusVisible, setFocusVisible] = React26.useState(false);
     if (disabled && focusVisible) {
       setFocusVisible(false);
     }
-    React22.useImperativeHandle(action, () => ({
+    React26.useImperativeHandle(action, () => ({
       focusVisible: () => {
         setFocusVisible(true);
         buttonRef.current.focus();
       }
     }), []);
-    const [mountedState, setMountedState] = React22.useState(false);
-    React22.useEffect(() => {
+    const [mountedState, setMountedState] = React26.useState(false);
+    React26.useEffect(() => {
       setMountedState(true);
     }, []);
     const enableTouchRipple = mountedState && !disableRipple && !disabled;
-    React22.useEffect(() => {
+    React26.useEffect(() => {
       if (focusVisible && focusRipple && !disableRipple && mountedState) {
         rippleRef.current.pulsate();
       }
@@ -31519,7 +31941,7 @@ Please use another name.` : formatMuiErrorMessage(18));
       const button = buttonRef.current;
       return component && component !== "button" && !(button.tagName === "A" && button.href);
     };
-    const keydownRef = React22.useRef(false);
+    const keydownRef = React26.useRef(false);
     const handleKeyDown2 = useEventCallback_default2((event) => {
       if (focusRipple && !keydownRef.current && focusVisible && rippleRef.current && event.key === " ") {
         keydownRef.current = true;
@@ -31572,7 +31994,7 @@ Please use another name.` : formatMuiErrorMessage(18));
     }
     const handleRef = useForkRef_default(ref, focusVisibleRef, buttonRef);
     if (true) {
-      React22.useEffect(() => {
+      React26.useEffect(() => {
         if (enableTouchRipple && !rippleRef.current) {
           console.error(["MUI: The `component` prop provided to ButtonBase is invalid.", "Please make sure the children prop is rendered in this custom component."].join("\n"));
         }
@@ -31588,8 +32010,8 @@ Please use another name.` : formatMuiErrorMessage(18));
       tabIndex,
       focusVisible
     });
-    const classes = useUtilityClasses(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(ButtonBaseRoot, _extends({
+    const classes = useUtilityClasses3(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(ButtonBaseRoot, _extends({
       as: ComponentProp,
       className: clsx_default(classes.root, className),
       ownerState,
@@ -31612,7 +32034,7 @@ Please use another name.` : formatMuiErrorMessage(18));
     }, buttonProps, other, {
       children: [children, enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(TouchRipple_default, _extends({
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(TouchRipple_default, _extends({
           ref: handleRippleRef,
           center: centerRipple
         }, TouchRippleProps))
@@ -31634,19 +32056,19 @@ Please use another name.` : formatMuiErrorMessage(18));
      * They won't start at the cursor interaction position.
      * @default false
      */
-    centerRipple: import_prop_types11.default.bool,
+    centerRipple: import_prop_types13.default.bool,
     /**
      * The content of the component.
      */
-    children: import_prop_types11.default.node,
+    children: import_prop_types13.default.node,
     /**
      * Override or extend the styles applied to the component.
      */
-    classes: import_prop_types11.default.object,
+    classes: import_prop_types13.default.object,
     /**
      * @ignore
      */
-    className: import_prop_types11.default.string,
+    className: import_prop_types13.default.string,
     /**
      * The component used for the root node.
      * Either a string to use a HTML element or a component.
@@ -31656,7 +32078,7 @@ Please use another name.` : formatMuiErrorMessage(18));
      * If `true`, the component is disabled.
      * @default false
      */
-    disabled: import_prop_types11.default.bool,
+    disabled: import_prop_types13.default.bool,
     /**
      * If `true`, the ripple effect is disabled.
      *
@@ -31664,17 +32086,17 @@ Please use another name.` : formatMuiErrorMessage(18));
      * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
      * @default false
      */
-    disableRipple: import_prop_types11.default.bool,
+    disableRipple: import_prop_types13.default.bool,
     /**
      * If `true`, the touch ripple effect is disabled.
      * @default false
      */
-    disableTouchRipple: import_prop_types11.default.bool,
+    disableTouchRipple: import_prop_types13.default.bool,
     /**
      * If `true`, the base button will have a keyboard focus ripple.
      * @default false
      */
-    focusRipple: import_prop_types11.default.bool,
+    focusRipple: import_prop_types13.default.bool,
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
@@ -31683,108 +32105,305 @@ Please use another name.` : formatMuiErrorMessage(18));
      * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
      * if needed.
      */
-    focusVisibleClassName: import_prop_types11.default.string,
+    focusVisibleClassName: import_prop_types13.default.string,
     /**
      * @ignore
      */
-    href: import_prop_types11.default.any,
+    href: import_prop_types13.default.any,
     /**
      * The component used to render a link when the `href` prop is provided.
      * @default 'a'
      */
-    LinkComponent: import_prop_types11.default.elementType,
+    LinkComponent: import_prop_types13.default.elementType,
     /**
      * @ignore
      */
-    onBlur: import_prop_types11.default.func,
+    onBlur: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onClick: import_prop_types11.default.func,
+    onClick: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onContextMenu: import_prop_types11.default.func,
+    onContextMenu: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onDragLeave: import_prop_types11.default.func,
+    onDragLeave: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onFocus: import_prop_types11.default.func,
+    onFocus: import_prop_types13.default.func,
     /**
      * Callback fired when the component is focused with a keyboard.
      * We trigger a `onFocus` callback too.
      */
-    onFocusVisible: import_prop_types11.default.func,
+    onFocusVisible: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onKeyDown: import_prop_types11.default.func,
+    onKeyDown: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onKeyUp: import_prop_types11.default.func,
+    onKeyUp: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onMouseDown: import_prop_types11.default.func,
+    onMouseDown: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onMouseLeave: import_prop_types11.default.func,
+    onMouseLeave: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onMouseUp: import_prop_types11.default.func,
+    onMouseUp: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onTouchEnd: import_prop_types11.default.func,
+    onTouchEnd: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onTouchMove: import_prop_types11.default.func,
+    onTouchMove: import_prop_types13.default.func,
     /**
      * @ignore
      */
-    onTouchStart: import_prop_types11.default.func,
+    onTouchStart: import_prop_types13.default.func,
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx: import_prop_types11.default.oneOfType([import_prop_types11.default.arrayOf(import_prop_types11.default.oneOfType([import_prop_types11.default.func, import_prop_types11.default.object, import_prop_types11.default.bool])), import_prop_types11.default.func, import_prop_types11.default.object]),
+    sx: import_prop_types13.default.oneOfType([import_prop_types13.default.arrayOf(import_prop_types13.default.oneOfType([import_prop_types13.default.func, import_prop_types13.default.object, import_prop_types13.default.bool])), import_prop_types13.default.func, import_prop_types13.default.object]),
     /**
      * @default 0
      */
-    tabIndex: import_prop_types11.default.number,
+    tabIndex: import_prop_types13.default.number,
     /**
      * Props applied to the `TouchRipple` element.
      */
-    TouchRippleProps: import_prop_types11.default.object,
+    TouchRippleProps: import_prop_types13.default.object,
     /**
      * A ref that points to the `TouchRipple` element.
      */
-    touchRippleRef: import_prop_types11.default.oneOfType([import_prop_types11.default.func, import_prop_types11.default.shape({
-      current: import_prop_types11.default.shape({
-        pulsate: import_prop_types11.default.func.isRequired,
-        start: import_prop_types11.default.func.isRequired,
-        stop: import_prop_types11.default.func.isRequired
+    touchRippleRef: import_prop_types13.default.oneOfType([import_prop_types13.default.func, import_prop_types13.default.shape({
+      current: import_prop_types13.default.shape({
+        pulsate: import_prop_types13.default.func.isRequired,
+        start: import_prop_types13.default.func.isRequired,
+        stop: import_prop_types13.default.func.isRequired
       })
     })]),
     /**
      * @ignore
      */
-    type: import_prop_types11.default.oneOfType([import_prop_types11.default.oneOf(["button", "reset", "submit"]), import_prop_types11.default.string])
+    type: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["button", "reset", "submit"]), import_prop_types13.default.string])
   } : void 0;
   var ButtonBase_default = ButtonBase;
 
+  // node_modules/@mui/material/IconButton/IconButton.js
+  var React27 = __toESM(require_react());
+  var import_prop_types14 = __toESM(require_prop_types());
+
+  // node_modules/@mui/material/IconButton/iconButtonClasses.js
+  function getIconButtonUtilityClass(slot) {
+    return generateUtilityClass("MuiIconButton", slot);
+  }
+  var iconButtonClasses = generateUtilityClasses("MuiIconButton", ["root", "disabled", "colorInherit", "colorPrimary", "colorSecondary", "colorError", "colorInfo", "colorSuccess", "colorWarning", "edgeStart", "edgeEnd", "sizeSmall", "sizeMedium", "sizeLarge"]);
+  var iconButtonClasses_default = iconButtonClasses;
+
+  // node_modules/@mui/material/IconButton/IconButton.js
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
+  var _excluded13 = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
+  var useUtilityClasses4 = (ownerState) => {
+    const {
+      classes,
+      disabled,
+      color: color2,
+      edge,
+      size
+    } = ownerState;
+    const slots = {
+      root: ["root", disabled && "disabled", color2 !== "default" && `color${capitalize_default(color2)}`, edge && `edge${capitalize_default(edge)}`, `size${capitalize_default(size)}`]
+    };
+    return composeClasses(slots, getIconButtonUtilityClass, classes);
+  };
+  var IconButtonRoot = styled_default(ButtonBase_default, {
+    name: "MuiIconButton",
+    slot: "Root",
+    overridesResolver: (props, styles2) => {
+      const {
+        ownerState
+      } = props;
+      return [styles2.root, ownerState.color !== "default" && styles2[`color${capitalize_default(ownerState.color)}`], ownerState.edge && styles2[`edge${capitalize_default(ownerState.edge)}`], styles2[`size${capitalize_default(ownerState.size)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    textAlign: "center",
+    flex: "0 0 auto",
+    fontSize: theme.typography.pxToRem(24),
+    padding: 8,
+    borderRadius: "50%",
+    overflow: "visible",
+    // Explicitly set the default value to solve a bug on IE11.
+    color: (theme.vars || theme).palette.action.active,
+    transition: theme.transitions.create("background-color", {
+      duration: theme.transitions.duration.shortest
+    })
+  }, !ownerState.disableRipple && {
+    "&:hover": {
+      backgroundColor: theme.vars ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      "@media (hover: none)": {
+        backgroundColor: "transparent"
+      }
+    }
+  }, ownerState.edge === "start" && {
+    marginLeft: ownerState.size === "small" ? -3 : -12
+  }, ownerState.edge === "end" && {
+    marginRight: ownerState.size === "small" ? -3 : -12
+  }), ({
+    theme,
+    ownerState
+  }) => {
+    var _palette;
+    const palette2 = (_palette = (theme.vars || theme).palette) == null ? void 0 : _palette[ownerState.color];
+    return _extends({}, ownerState.color === "inherit" && {
+      color: "inherit"
+    }, ownerState.color !== "inherit" && ownerState.color !== "default" && _extends({
+      color: palette2 == null ? void 0 : palette2.main
+    }, !ownerState.disableRipple && {
+      "&:hover": _extends({}, palette2 && {
+        backgroundColor: theme.vars ? `rgba(${palette2.mainChannel} / ${theme.vars.palette.action.hoverOpacity})` : alpha(palette2.main, theme.palette.action.hoverOpacity)
+      }, {
+        // Reset on touch devices, it doesn't add specificity
+        "@media (hover: none)": {
+          backgroundColor: "transparent"
+        }
+      })
+    }), ownerState.size === "small" && {
+      padding: 5,
+      fontSize: theme.typography.pxToRem(18)
+    }, ownerState.size === "large" && {
+      padding: 12,
+      fontSize: theme.typography.pxToRem(28)
+    }, {
+      [`&.${iconButtonClasses_default.disabled}`]: {
+        backgroundColor: "transparent",
+        color: (theme.vars || theme).palette.action.disabled
+      }
+    });
+  });
+  var IconButton = /* @__PURE__ */ React27.forwardRef(function IconButton2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiIconButton"
+    });
+    const {
+      edge = false,
+      children,
+      className,
+      color: color2 = "default",
+      disabled = false,
+      disableFocusRipple = false,
+      size = "medium"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded13);
+    const ownerState = _extends({}, props, {
+      edge,
+      color: color2,
+      disabled,
+      disableFocusRipple,
+      size
+    });
+    const classes = useUtilityClasses4(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(IconButtonRoot, _extends({
+      className: clsx_default(classes.root, className),
+      centerRipple: true,
+      focusRipple: !disableFocusRipple,
+      disabled,
+      ref,
+      ownerState
+    }, other, {
+      children
+    }));
+  });
+  true ? IconButton.propTypes = {
+    // ┌────────────────────────────── Warning ──────────────────────────────┐
+    // │ These PropTypes are generated from the TypeScript type definitions. │
+    // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+    // └─────────────────────────────────────────────────────────────────────┘
+    /**
+     * The icon to display.
+     */
+    children: chainPropTypes(import_prop_types14.default.node, (props) => {
+      const found = React27.Children.toArray(props.children).some((child) => /* @__PURE__ */ React27.isValidElement(child) && child.props.onClick);
+      if (found) {
+        return new Error(["MUI: You are providing an onClick event listener to a child of a button element.", "Prefer applying it to the IconButton directly.", "This guarantees that the whole <button> will be responsive to click events."].join("\n"));
+      }
+      return null;
+    }),
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: import_prop_types14.default.object,
+    /**
+     * @ignore
+     */
+    className: import_prop_types14.default.string,
+    /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+     * @default 'default'
+     */
+    color: import_prop_types14.default.oneOfType([import_prop_types14.default.oneOf(["inherit", "default", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types14.default.string]),
+    /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+    disabled: import_prop_types14.default.bool,
+    /**
+     * If `true`, the  keyboard focus ripple is disabled.
+     * @default false
+     */
+    disableFocusRipple: import_prop_types14.default.bool,
+    /**
+     * If `true`, the ripple effect is disabled.
+     *
+     * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
+     * @default false
+     */
+    disableRipple: import_prop_types14.default.bool,
+    /**
+     * If given, uses a negative margin to counteract the padding on one
+     * side (this is often helpful for aligning the left or right
+     * side of the icon with content above or below, without ruining the border
+     * size and shape).
+     * @default false
+     */
+    edge: import_prop_types14.default.oneOf(["end", "start", false]),
+    /**
+     * The size of the component.
+     * `small` is equivalent to the dense button styling.
+     * @default 'medium'
+     */
+    size: import_prop_types14.default.oneOfType([import_prop_types14.default.oneOf(["small", "medium", "large"]), import_prop_types14.default.string]),
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: import_prop_types14.default.oneOfType([import_prop_types14.default.arrayOf(import_prop_types14.default.oneOfType([import_prop_types14.default.func, import_prop_types14.default.object, import_prop_types14.default.bool])), import_prop_types14.default.func, import_prop_types14.default.object])
+  } : void 0;
+  var IconButton_default = IconButton;
+
   // node_modules/@mui/material/GlobalStyles/GlobalStyles.js
-  var React23 = __toESM(require_react());
-  var import_prop_types12 = __toESM(require_prop_types());
-  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var React28 = __toESM(require_react());
+  var import_prop_types15 = __toESM(require_prop_types());
+  var import_jsx_runtime14 = __toESM(require_jsx_runtime());
   function GlobalStyles3(props) {
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(GlobalStyles_default, _extends({}, props, {
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(GlobalStyles_default, _extends({}, props, {
       defaultTheme: defaultTheme_default,
       themeId: identifier_default
     }));
@@ -31797,13 +32416,13 @@ Please use another name.` : formatMuiErrorMessage(18));
     /**
      * The styles you want to apply globally.
      */
-    styles: import_prop_types12.default.oneOfType([import_prop_types12.default.array, import_prop_types12.default.func, import_prop_types12.default.number, import_prop_types12.default.object, import_prop_types12.default.string, import_prop_types12.default.bool])
+    styles: import_prop_types15.default.oneOfType([import_prop_types15.default.array, import_prop_types15.default.func, import_prop_types15.default.number, import_prop_types15.default.object, import_prop_types15.default.string, import_prop_types15.default.bool])
   } : void 0;
   var GlobalStyles_default2 = GlobalStyles3;
 
   // node_modules/@mui/material/Button/Button.js
-  var React26 = __toESM(require_react());
-  var import_prop_types13 = __toESM(require_prop_types());
+  var React31 = __toESM(require_react());
+  var import_prop_types16 = __toESM(require_prop_types());
 
   // node_modules/@mui/material/Button/buttonClasses.js
   function getButtonUtilityClass(slot) {
@@ -31813,26 +32432,26 @@ Please use another name.` : formatMuiErrorMessage(18));
   var buttonClasses_default = buttonClasses;
 
   // node_modules/@mui/material/ButtonGroup/ButtonGroupContext.js
-  var React24 = __toESM(require_react());
-  var ButtonGroupContext = /* @__PURE__ */ React24.createContext({});
+  var React29 = __toESM(require_react());
+  var ButtonGroupContext = /* @__PURE__ */ React29.createContext({});
   if (true) {
     ButtonGroupContext.displayName = "ButtonGroupContext";
   }
   var ButtonGroupContext_default = ButtonGroupContext;
 
   // node_modules/@mui/material/ButtonGroup/ButtonGroupButtonContext.js
-  var React25 = __toESM(require_react());
-  var ButtonGroupButtonContext = /* @__PURE__ */ React25.createContext(void 0);
+  var React30 = __toESM(require_react());
+  var ButtonGroupButtonContext = /* @__PURE__ */ React30.createContext(void 0);
   if (true) {
     ButtonGroupButtonContext.displayName = "ButtonGroupButtonContext";
   }
   var ButtonGroupButtonContext_default = ButtonGroupButtonContext;
 
   // node_modules/@mui/material/Button/Button.js
-  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
-  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
-  var _excluded11 = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
-  var useUtilityClasses2 = (ownerState) => {
+  var import_jsx_runtime15 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime16 = __toESM(require_jsx_runtime());
+  var _excluded14 = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
+  var useUtilityClasses5 = (ownerState) => {
     const {
       color: color2,
       disableElevation,
@@ -32034,9 +32653,9 @@ Please use another name.` : formatMuiErrorMessage(18));
   }, ownerState.size === "small" && {
     marginRight: -2
   }, commonIconStyles(ownerState)));
-  var Button = /* @__PURE__ */ React26.forwardRef(function Button2(inProps, ref) {
-    const contextProps = React26.useContext(ButtonGroupContext_default);
-    const buttonGroupButtonContextPositionClassName = React26.useContext(ButtonGroupButtonContext_default);
+  var Button = /* @__PURE__ */ React31.forwardRef(function Button2(inProps, ref) {
+    const contextProps = React31.useContext(ButtonGroupContext_default);
+    const buttonGroupButtonContextPositionClassName = React31.useContext(ButtonGroupButtonContext_default);
     const resolvedProps = resolveProps(contextProps, inProps);
     const props = useThemeProps2({
       props: resolvedProps,
@@ -32057,7 +32676,7 @@ Please use another name.` : formatMuiErrorMessage(18));
       startIcon: startIconProp,
       type,
       variant = "text"
-    } = props, other = _objectWithoutPropertiesLoose(props, _excluded11);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded14);
     const ownerState = _extends({}, props, {
       color: color2,
       component,
@@ -32069,19 +32688,19 @@ Please use another name.` : formatMuiErrorMessage(18));
       type,
       variant
     });
-    const classes = useUtilityClasses2(ownerState);
-    const startIcon = startIconProp && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ButtonStartIcon, {
+    const classes = useUtilityClasses5(ownerState);
+    const startIcon = startIconProp && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ButtonStartIcon, {
       className: classes.startIcon,
       ownerState,
       children: startIconProp
     });
-    const endIcon = endIconProp && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ButtonEndIcon, {
+    const endIcon = endIconProp && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ButtonEndIcon, {
       className: classes.endIcon,
       ownerState,
       children: endIconProp
     });
     const positionClassName = buttonGroupButtonContextPositionClassName || "";
-    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(ButtonRoot, _extends({
+    return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(ButtonRoot, _extends({
       ownerState,
       className: clsx_default(contextProps.className, classes.root, className, positionClassName),
       component,
@@ -32103,42 +32722,42 @@ Please use another name.` : formatMuiErrorMessage(18));
     /**
      * The content of the component.
      */
-    children: import_prop_types13.default.node,
+    children: import_prop_types16.default.node,
     /**
      * Override or extend the styles applied to the component.
      */
-    classes: import_prop_types13.default.object,
+    classes: import_prop_types16.default.object,
     /**
      * @ignore
      */
-    className: import_prop_types13.default.string,
+    className: import_prop_types16.default.string,
     /**
      * The color of the component.
      * It supports both default and custom theme colors, which can be added as shown in the
      * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
      * @default 'primary'
      */
-    color: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["inherit", "primary", "secondary", "success", "error", "info", "warning"]), import_prop_types13.default.string]),
+    color: import_prop_types16.default.oneOfType([import_prop_types16.default.oneOf(["inherit", "primary", "secondary", "success", "error", "info", "warning"]), import_prop_types16.default.string]),
     /**
      * The component used for the root node.
      * Either a string to use a HTML element or a component.
      */
-    component: import_prop_types13.default.elementType,
+    component: import_prop_types16.default.elementType,
     /**
      * If `true`, the component is disabled.
      * @default false
      */
-    disabled: import_prop_types13.default.bool,
+    disabled: import_prop_types16.default.bool,
     /**
      * If `true`, no elevation is used.
      * @default false
      */
-    disableElevation: import_prop_types13.default.bool,
+    disableElevation: import_prop_types16.default.bool,
     /**
      * If `true`, the  keyboard focus ripple is disabled.
      * @default false
      */
-    disableFocusRipple: import_prop_types13.default.bool,
+    disableFocusRipple: import_prop_types16.default.bool,
     /**
      * If `true`, the ripple effect is disabled.
      *
@@ -32146,56 +32765,56 @@ Please use another name.` : formatMuiErrorMessage(18));
      * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
      * @default false
      */
-    disableRipple: import_prop_types13.default.bool,
+    disableRipple: import_prop_types16.default.bool,
     /**
      * Element placed after the children.
      */
-    endIcon: import_prop_types13.default.node,
+    endIcon: import_prop_types16.default.node,
     /**
      * @ignore
      */
-    focusVisibleClassName: import_prop_types13.default.string,
+    focusVisibleClassName: import_prop_types16.default.string,
     /**
      * If `true`, the button will take up the full width of its container.
      * @default false
      */
-    fullWidth: import_prop_types13.default.bool,
+    fullWidth: import_prop_types16.default.bool,
     /**
      * The URL to link to when the button is clicked.
      * If defined, an `a` element will be used as the root node.
      */
-    href: import_prop_types13.default.string,
+    href: import_prop_types16.default.string,
     /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["small", "medium", "large"]), import_prop_types13.default.string]),
+    size: import_prop_types16.default.oneOfType([import_prop_types16.default.oneOf(["small", "medium", "large"]), import_prop_types16.default.string]),
     /**
      * Element placed before the children.
      */
-    startIcon: import_prop_types13.default.node,
+    startIcon: import_prop_types16.default.node,
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx: import_prop_types13.default.oneOfType([import_prop_types13.default.arrayOf(import_prop_types13.default.oneOfType([import_prop_types13.default.func, import_prop_types13.default.object, import_prop_types13.default.bool])), import_prop_types13.default.func, import_prop_types13.default.object]),
+    sx: import_prop_types16.default.oneOfType([import_prop_types16.default.arrayOf(import_prop_types16.default.oneOfType([import_prop_types16.default.func, import_prop_types16.default.object, import_prop_types16.default.bool])), import_prop_types16.default.func, import_prop_types16.default.object]),
     /**
      * @ignore
      */
-    type: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["button", "reset", "submit"]), import_prop_types13.default.string]),
+    type: import_prop_types16.default.oneOfType([import_prop_types16.default.oneOf(["button", "reset", "submit"]), import_prop_types16.default.string]),
     /**
      * The variant to use.
      * @default 'text'
      */
-    variant: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["contained", "outlined", "text"]), import_prop_types13.default.string])
+    variant: import_prop_types16.default.oneOfType([import_prop_types16.default.oneOf(["contained", "outlined", "text"]), import_prop_types16.default.string])
   } : void 0;
   var Button_default = Button;
 
   // node_modules/@mui/material/CssBaseline/CssBaseline.js
-  var React27 = __toESM(require_react());
-  var import_prop_types14 = __toESM(require_prop_types());
-  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
-  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
+  var React32 = __toESM(require_react());
+  var import_prop_types17 = __toESM(require_prop_types());
+  var import_jsx_runtime17 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime18 = __toESM(require_jsx_runtime());
   var html = (theme, enableColorScheme) => _extends({
     WebkitFontSmoothing: "antialiased",
     // Antialiasing.
@@ -32262,8 +32881,8 @@ Please use another name.` : formatMuiErrorMessage(18));
       children,
       enableColorScheme = false
     } = props;
-    return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(React27.Fragment, {
-      children: [/* @__PURE__ */ (0, import_jsx_runtime12.jsx)(GlobalStyles_default2, {
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(React32.Fragment, {
+      children: [/* @__PURE__ */ (0, import_jsx_runtime17.jsx)(GlobalStyles_default2, {
         styles: (theme) => styles(theme, enableColorScheme)
       }), children]
     });
@@ -32276,20 +32895,20 @@ Please use another name.` : formatMuiErrorMessage(18));
     /**
      * You can wrap a node.
      */
-    children: import_prop_types14.default.node,
+    children: import_prop_types17.default.node,
     /**
      * Enable `color-scheme` CSS property to use `theme.palette.mode`.
      * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
      * For browser support, check out https://caniuse.com/?search=color-scheme
      * @default false
      */
-    enableColorScheme: import_prop_types14.default.bool
+    enableColorScheme: import_prop_types17.default.bool
   } : void 0;
   var CssBaseline_default = CssBaseline;
 
-  // src/elements/HelperButton.jsx
+  // src/components/HelperButton.jsx
   var import_react9 = __toESM(require_react(), 1);
-  var import_prop_types15 = __toESM(require_prop_types(), 1);
+  var import_prop_types18 = __toESM(require_prop_types(), 1);
   function HelperButton(props) {
     const { onClickCallback, showButton } = props;
     return /* @__PURE__ */ import_react9.default.createElement("div", { style: {
@@ -32309,8 +32928,8 @@ Please use another name.` : formatMuiErrorMessage(18));
     ));
   }
   HelperButton.propTypes = {
-    onClickCallback: import_prop_types15.default.func,
-    showButton: import_prop_types15.default.bool
+    onClickCallback: import_prop_types18.default.func,
+    showButton: import_prop_types18.default.bool
   };
   HelperButton.defaultProps = {
     onClickCallback: () => {
@@ -32318,22 +32937,90 @@ Please use another name.` : formatMuiErrorMessage(18));
     showButton: true
   };
 
-  // src/elements/AppRoot.jsx
+  // src/components/RootPanelDrawer.jsx
+  var import_react10 = __toESM(require_react(), 1);
+  var import_prop_types19 = __toESM(require_prop_types(), 1);
+
+  // node_modules/@mui/icons-material/esm/KeyboardDoubleArrowRight.js
+  var import_jsx_runtime19 = __toESM(require_jsx_runtime());
+  var KeyboardDoubleArrowRight_default = createSvgIcon([/* @__PURE__ */ (0, import_jsx_runtime19.jsx)("path", {
+    d: "M6.41 6 5 7.41 9.58 12 5 16.59 6.41 18l6-6z"
+  }, "0"), /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("path", {
+    d: "m13 6-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"
+  }, "1")], "KeyboardDoubleArrowRight");
+
+  // src/components/RootPanelDrawer.jsx
+  function RootPanelDrawer(props) {
+    const { onHideDrawer, showDrawer, children } = props;
+    return /* @__PURE__ */ import_react10.default.createElement(
+      "div",
+      {
+        style: {
+          position: "fixed",
+          top: "90px",
+          right: "10px",
+          transform: showDrawer ? "translateX(0%)" : "translateX(120%)",
+          transition: "transform 0.66s ease-in-out",
+          zIndex: 999
+        }
+      },
+      /* @__PURE__ */ import_react10.default.createElement(
+        Paper_default,
+        {
+          elevation: 5,
+          sx: {
+            height: "calc(100vh - 140px)",
+            width: "80vw",
+            padding: "20px"
+          }
+        },
+        /* @__PURE__ */ import_react10.default.createElement(
+          IconButton_default,
+          {
+            "aria-label": "hide summary",
+            sx: { position: "absolute", top: "10px", right: "10px" },
+            onClick: onHideDrawer
+          },
+          /* @__PURE__ */ import_react10.default.createElement(KeyboardDoubleArrowRight_default, null)
+        ),
+        children
+      )
+    );
+  }
+  RootPanelDrawer.propTypes = {
+    showDrawer: import_prop_types19.default.bool,
+    onHideDrawer: import_prop_types19.default.func,
+    children: import_prop_types19.default.node
+  };
+  RootPanelDrawer.defaultProps = {
+    showDrawer: false,
+    onHideDrawer: () => {
+    }
+  };
+
+  // src/components/AppRoot.jsx
   function AppRoot() {
-    const [showHelper, setShowHelper] = import_react10.default.useState(false);
+    const [showHelper, setShowHelper] = import_react11.default.useState(false);
     const onShowHelper = () => {
       setShowHelper(true);
     };
-    return /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react10.default.createElement(
+    return /* @__PURE__ */ import_react11.default.createElement(import_react11.default.Fragment, null, /* @__PURE__ */ import_react11.default.createElement(CssBaseline_default, null), /* @__PURE__ */ import_react11.default.createElement(
       HelperButton,
       {
         showButton: !showHelper,
         onClickCallback: onShowHelper
       }
+    ), /* @__PURE__ */ import_react11.default.createElement(
+      RootPanelDrawer,
+      {
+        showDrawer: showHelper,
+        onHideDrawer: () => setShowHelper(false)
+      },
+      /* @__PURE__ */ import_react11.default.createElement("h1", null, "Helper Dialog")
     ));
   }
 
-  // src/elements/shadowAttacher.jsx
+  // src/components/shadowAttacher.jsx
   var EMOTION_ROOT_ID = "helperReactEmotionRoot";
   var SHADOW_ROOT_ID = "helperReactShadowDOMRoot";
   function attachReactDOM(rootRenderElement, componentParams) {
@@ -32374,7 +33061,7 @@ Please use another name.` : formatMuiErrorMessage(18));
     const cache = createCache({ key: "css", prepend: true, container: emotionRoot });
     const reactRoot = (0, import_client.createRoot)(shadowRootElement);
     reactRoot.render(
-      /* @__PURE__ */ import_react11.default.createElement(CacheProvider, { value: cache }, /* @__PURE__ */ import_react11.default.createElement(ThemeProvider_default2, { theme: shadowDOMTheme }, /* @__PURE__ */ import_react11.default.createElement(AppRoot, { ...componentParams })))
+      /* @__PURE__ */ import_react12.default.createElement(CacheProvider, { value: cache }, /* @__PURE__ */ import_react12.default.createElement(ThemeProvider_default2, { theme: shadowDOMTheme }, /* @__PURE__ */ import_react12.default.createElement(AppRoot, { ...componentParams })))
     );
   }
   window.attachReactDOM = attachReactDOM;

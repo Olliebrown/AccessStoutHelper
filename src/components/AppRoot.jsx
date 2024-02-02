@@ -3,6 +3,7 @@ import React from 'react'
 import { CssBaseline } from '@mui/material'
 
 import HelperButton from './HelperButton.jsx'
+import RootPanelDrawer from './RootPanelDrawer.jsx'
 
 export default function AppRoot () {
   // Manage state of the helper dialog and button
@@ -17,6 +18,12 @@ export default function AppRoot () {
         showButton={!showHelper}
         onClickCallback={onShowHelper}
       />
+      <RootPanelDrawer
+        showDrawer={showHelper}
+        onHideDrawer={() => setShowHelper(false)}
+      >
+        <h1>Helper Dialog</h1>
+      </RootPanelDrawer>
     </React.Fragment>
   )
 }
